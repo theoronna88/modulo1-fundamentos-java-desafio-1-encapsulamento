@@ -9,9 +9,22 @@ public class Produto {
 
     public Produto(int id, String nome, double preco, int quantidadeEmEstoque) {
         this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
+
+        if (nome != null && nome.trim().length() > 3) {
+            this.nome = nome;
+        }else {
+            System.out.println("Nome inválido: O nome do produto deve conter pelo menos 3 caracteres.");
+        }
+        if (preco > 0) {
+            this.preco = preco;
+        } else {
+            System.out.println("Preço inválido: O preço deve ser maior que zero.");
+        }
+        if (quantidadeEmEstoque >= 0) {
+            this.quantidadeEmEstoque = quantidadeEmEstoque;
+        } else {
+            System.out.println("Quantidade inválida: O estoque não pode ser negativo.");
+        }
     }
 
 
@@ -26,6 +39,10 @@ public class Produto {
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().length() < 3) {
+            System.out.println("Nome inválido: O nome do produto deve conter pelo menos 3 caracteres.");
+            return;
+        }
         this.nome = nome;
     }
 
@@ -34,12 +51,8 @@ public class Produto {
     }
 
     public void setPreco(double preco) {
-        if (preco < 0) {
-            System.out.println("Preço inválido: O preço não pode ser negativo.");
-            return;
-        }
-        if (preco == 0) {
-            System.out.println("Preço inválido: O preço não pode ser zero.");
+        if (preco <= 0) {
+            System.out.println("Preço inválido: O preço deve ser maior que 0.");
             return;
         }
         this.preco = preco;
