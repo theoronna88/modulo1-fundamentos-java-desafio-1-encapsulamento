@@ -13,17 +13,17 @@ public class Produto {
         if (nome != null && nome.trim().length() > 3) {
             this.nome = nome;
         }else {
-            System.out.println("Nome inválido: O nome do produto deve conter pelo menos 3 caracteres.");
+            throw new IllegalArgumentException("Nome inválido: O nome do produto deve conter pelo menos 3 caracteres.");
         }
         if (preco > 0) {
             this.preco = preco;
         } else {
-            System.out.println("Preço inválido: O preço deve ser maior que zero.");
+            throw new IllegalArgumentException("Preço inválido: O preço deve ser maior que zero.");
         }
         if (quantidadeEmEstoque >= 0) {
             this.quantidadeEmEstoque = quantidadeEmEstoque;
         } else {
-            System.out.println("Quantidade inválida: O estoque não pode ser negativo.");
+            throw new IllegalArgumentException("Quantidade inválida: O estoque não pode ser negativo.");
         }
     }
 
@@ -40,8 +40,8 @@ public class Produto {
 
     public void setNome(String nome) {
         if (nome == null || nome.trim().length() < 3) {
-            System.out.println("Nome inválido: O nome do produto deve conter pelo menos 3 caracteres.");
-            return;
+            throw new IllegalArgumentException("Nome inválido: O nome do produto deve conter pelo menos 3 caracteres.");
+
         }
         this.nome = nome;
     }
@@ -52,8 +52,7 @@ public class Produto {
 
     public void setPreco(double preco) {
         if (preco <= 0) {
-            System.out.println("Preço inválido: O preço deve ser maior que 0.");
-            return;
+            throw new IllegalArgumentException("Preço inválido: O preço deve ser maior que zero.");
         }
         this.preco = preco;
     }
@@ -64,8 +63,7 @@ public class Produto {
 
     public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
         if (quantidadeEmEstoque < 0) {
-            System.out.println("Quantidade inválida: O estoque não pode ser negativo.");
-            return;
+            throw new IllegalArgumentException("Quantidade inválida: O estoque não pode ser negativo.");
         }
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
